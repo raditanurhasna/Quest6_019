@@ -10,10 +10,12 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.navigasicompose.ui.theme.view.screen.DetailMahasiswaView
 import com.example.navigasicompose.ui.theme.view.screen.SplashView
 import com.example.navigasicompose.ui.theme.view.viewmodel.RencanaStudyViewModel
+import com.example.navigasicompose.ui.view.screen.MahasiswaFormView
 import com.example.navigasicompose.ui.view.viewmodel.MahasiswaViewModel
-import com.example.project.ui.view.screen.MahasiswaFormView
+
 
 enum class Halaman{
     Splash,
@@ -30,6 +32,7 @@ fun MahasiswaApp(
     navController: NavHostController = rememberNavController()
 ){
     val mahasiswaUiState = mahasiswaViewModel.mahasiswaUIState.collectAsState().value
+    val rencanaUiState = krsViewModel.krsStateUi.collectAsState().value
     NavHost(
         navController = navController,
         startDestination = Halaman.Splash.name,
@@ -59,6 +62,16 @@ fun MahasiswaApp(
                 onSubmitButtonCliked = { krsViewModel.saveDataKRS(it) },
                 onBackButtonCliked = { navController.popBackStack() }
             )
+            composable(route = Halaman.Tampil.name) {
+                DetailMahasiswaView(
+                    dataMhs = mahasiswaUiState,
+                    DataKRS = rencanaUiState,
+                    onClickButton = {
+                        navController.popBackStack()
+                    }
+                )
+
+            }
         }
     }
 }
