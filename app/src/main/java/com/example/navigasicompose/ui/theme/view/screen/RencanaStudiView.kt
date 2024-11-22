@@ -35,17 +35,16 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.navigasicompose.R
 import com.example.navigasicompose.data.MataKuliah
 import com.example.navigasicompose.data.RuangKelas
-import com.example.navigasicompose.ui.theme.widget.DynamicSelectTextField
-import com.example.project.R
-import com.example.project.data.MataKuliah
-import com.example.project.data.RuangKelas
-import com.example.project.model.Mahasiswa
-import com.example.project.ui.widget.DynamicSelestedTextField
+import com.example.navigasicompose.model.Mahasiswa
+import com.example.navigasicompose.model.RencanaStudi
+import com.example.navigasicompose.ui.theme.widget.DynamicSelectTextdField
+
 
 @Composable
-fun RencanaStudyView(
+fun RencanaStudiView(
     mahasiswa: Mahasiswa,
     onSubmitButtonCliked: (MutableList<String>) -> Unit,
     onBackButtonCliked: ()->Unit
@@ -122,11 +121,11 @@ fun RencanaStudyView(
                     fontWeight = FontWeight.Light
                 )
                 Spacer(modifier = Modifier.padding(8.dp))
-                DynamicSelectTextField(
+                DynamicSelectTextdField(
                     selectedValue = chosenDropdown,
                     options = MataKuliah.options,
                     label = "Mata Kuliah",
-                    onValueChangeEvent = {
+                    onValueChangedEvent = {
                         chosenDropdown = it
                     },
                 )
@@ -180,3 +179,5 @@ fun RencanaStudyView(
         }
     }
 }
+
+
